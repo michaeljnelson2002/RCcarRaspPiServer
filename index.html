@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Car Control</title>
+    <style>
+        .button {
+            display: block;
+            width: 100px;
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RC Car Remote Control</h1>
+        <button class="button" onclick="sendCommand('forward')">Forward</button>
+        <button class="button" onclick="sendCommand('reverse')">Reverse</button>
+        <button class="button" onclick="sendCommand('left')">Left</button>
+        <button class="button" onclick="sendCommand('right')">Right</button>
+        <button class="button" onclick="sendCommand('stop')">Stop</button>
+    </div>
+    <script>
+        function sendCommand(command) {
+            fetch('/' + command)
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
+
